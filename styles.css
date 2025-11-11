@@ -629,7 +629,7 @@ body {
 }
 
 /* Projects Section - Modern Cards */
-.projects-container {
+/* .projects-container {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
@@ -717,6 +717,151 @@ body {
     color: var(--text-secondary);
     line-height: 1.7;
     font-size: 0.95rem;
+} */
+/* === Projects v2: image on top, two-icon actions row === */
+/************************************
+ * Projects — 3 tiles per row layout
+ * Image on top, info below, two icons
+ ************************************/
+
+/* Overall container width + grid */
+.projects-section .projects-container {
+  max-width: 1200px;                 /* keep tiles from going full width */
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* three per row */
+  align-items: start;
+}
+
+/* Tablet: two per row */
+@media (max-width: 1024px) {
+  .projects-section .projects-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile: one per row */
+@media (max-width: 640px) {
+  .projects-section .projects-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Project card */
+.project-item {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface, rgba(26,26,26,0.35));
+  border: 1px solid var(--border, rgba(255,255,255,0.12));
+  border-radius: 16px;
+  overflow: hidden;                  /* makes image neatly clipped */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+  border-color: var(--accent, rgba(255,255,255,0.2));
+}
+
+/* Image block on top — consistent height */
+.project-visual {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0f0f0f;
+}
+
+.project-visual img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform .35s ease, filter .35s ease;
+}
+
+.project-item:hover .project-visual img {
+  transform: scale(1.05);
+  filter: saturate(1.05);
+}
+
+/* Info block */
+.project-info {
+  padding: 1.1rem 1.2rem 1.25rem;
+  color: var(--text-primary, #e9e9e9);
+}
+
+.project-title {
+  margin: 0 0 .35rem 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-primary, #ffffff);
+}
+
+.project-tech {
+  margin: 0 0 .5rem 0;
+  font-size: .9rem;
+  color: var(--text-secondary, #b8b8b8);
+}
+
+.project-desc {
+  margin: 0;
+  font-size: .95rem;
+  line-height: 1.45;
+  color: var(--text-primary, #e9e9e9);
+}
+
+/* Actions row — EXACTLY two icons visually styled as logos */
+.project-actions {
+  display: inline-flex;
+  gap: .6rem;
+  margin-top: .8rem;
+}
+
+/* Circular icon buttons */
+.project-actions .action-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border, rgba(255,255,255,0.14));
+  background: var(--surface, rgba(24,24,24,0.6));
+  color: var(--text-primary, #ffffff);
+  text-decoration: none;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  will-change: transform;
+}
+
+.project-actions .action-btn:hover,
+.project-actions .action-btn:focus-visible {
+  background: var(--accent, #2b6cb0);
+  border-color: var(--accent, #2b6cb0);
+  transform: translateY(-1px);
+}
+
+.project-actions .action-btn i {
+  font-size: 1.05rem;  /* FA globe / GitHub size */
+  line-height: 1;
+}
+
+/* Keyboard focus outline for accessibility */
+.project-actions .action-btn:focus-visible {
+  outline: 2px solid var(--accent, #2b6cb0);
+  outline-offset: 2px;
+}
+
+/* Optional: tighten vertical rhythm on small screens */
+@media (max-width: 640px) {
+  .project-info { padding: 1rem; }
+  .project-title { font-size: 1.05rem; }
+  .project-desc { font-size: .92rem; }
 }
 
 /* Contact Section */
@@ -1196,4 +1341,78 @@ html {
 
 .modal-close-btn:active {
     transform: translateY(0);
+}
+
+@media (min-width: 1280px) {
+  .nav-container {            /* nav bar inner width */
+    max-width: 1600px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* reduce big side paddings so content breathes horizontally */
+  .section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* widen core content wrappers */
+  .expertise-grid,
+  .timeline,
+  .projects-section .projects-container,
+  .contact-container {
+    max-width: 1500px;        /* was ~1200–1300px */
+  }
+
+  /* give each timeline card a touch more width */
+  .timeline-content {
+    width: 52%;
+  }
+}
+
+/* Ensure 3 columns on desktop, 2 on tablet, 1 on mobile */
+.projects-section .projects-container {
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* desktop: 3 */
+}
+
+/* Some earlier rules set .projects-container to 1 col at 1200px.
+   Override that so we still get 2 columns on tablets. */
+@media (max-width: 1200px) {
+  .projects-section .projects-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* tablet: 2 */
+  }
+}
+
+/* Mobile remains 1 column */
+@media (max-width: 640px) {
+  .projects-section .projects-container {
+    grid-template-columns: 1fr; /* mobile: 1 */
+  }
+}
+
+/* === TIMELINE FIX: prevent cards crossing the center line === */
+@media (min-width: 1025px) {
+  /* keep the vertical line centered */
+  .timeline-line { left: 50%; transform: translateX(-50%); }
+
+  /* make each card strictly less than half, leaving space for the pole & date */
+  .timeline-content {
+    width: calc(50% - 80px) !important;  /* safety gap ~80px */
+  }
+
+  /* maintain left/right alignment */
+  .timeline-left  .timeline-content { margin-right: auto; }
+  .timeline-right .timeline-content { margin-left:  auto; }
+
+  /* ensure the dot stays centered */
+  .timeline-dot { left: 50%; transform: translateX(-50%); }
+}
+
+/* keep date badges on the open side of the pole */
+.timeline-left  .timeline-date { left:  calc(50% + 40px); }
+.timeline-right .timeline-date { right: calc(50% + 40px); }
+
+/* Tablet range: a slightly smaller gap still prevents overlap */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .timeline-content { width: calc(50% - 60px) !important; }
 }
