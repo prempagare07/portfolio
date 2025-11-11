@@ -629,100 +629,6 @@ body {
 }
 
 /* Projects Section - Modern Cards */
-/* .projects-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 3rem;
-}
-
-.project-item {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 2rem;
-    padding: 2rem;
-    border-radius: 16px;
-    background: rgba(26, 26, 26, 0.3);
-    transition: all 0.4s ease;
-    border: 1px solid transparent;
-}
-
-.project-item:hover {
-    background: rgba(26, 26, 26, 0.5);
-    border-color: var(--border);
-    transform: translateY(-5px);
-}
-
-.project-visual {
-    width: 280px;
-    height: 200px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.project-visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.project-item:hover .project-visual img {
-    transform: scale(1.05);
-}
-
-.project-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.project-link {
-    text-decoration: none;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 0.8rem;
-    transition: all 0.3s ease;
-}
-
-.project-link:hover {
-    color: var(--accent);
-}
-
-.project-link:hover i {
-    transform: translate(3px, -3px);
-}
-
-.project-link h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.project-link i {
-    font-size: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.project-tech {
-    color: var(--accent);
-    font-size: 0.85rem;
-    margin-bottom: 0.8rem;
-    font-weight: 500;
-}
-
-.project-desc {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    font-size: 0.95rem;
-} */
-/* === Projects v2: image on top, two-icon actions row === */
-/************************************
- * Projects — 3 tiles per row layout
- * Image on top, info below, two icons
- ************************************/
 
 /* Overall container width + grid */
 .projects-section .projects-container {
@@ -1370,13 +1276,11 @@ html {
   }
 }
 
-/* Ensure 3 columns on desktop, 2 on tablet, 1 on mobile */
+
 .projects-section .projects-container {
   grid-template-columns: repeat(3, minmax(0, 1fr)); /* desktop: 3 */
 }
 
-/* Some earlier rules set .projects-container to 1 col at 1200px.
-   Override that so we still get 2 columns on tablets. */
 @media (max-width: 1200px) {
   .projects-section .projects-container {
     grid-template-columns: repeat(2, minmax(0, 1fr)); /* tablet: 2 */
@@ -1390,7 +1294,6 @@ html {
   }
 }
 
-/* === TIMELINE FIX: prevent cards crossing the center line === */
 @media (min-width: 1025px) {
   /* keep the vertical line centered */
   .timeline-line { left: 50%; transform: translateX(-50%); }
